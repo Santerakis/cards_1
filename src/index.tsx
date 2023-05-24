@@ -8,6 +8,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { dividerClasses } from "@mui/material";
 import { Register } from "./features/auth/Register/Register";
+import Login from "./features/auth/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <h1>Login</h1>
+    element: <Login/>
   },
   {
     path: "/register",
