@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType } from "./authApi";
 import { AppDispatch, RootState } from "../../app/store";
+import { createAppAsyncThunk } from "../../common/utils/createAppAsyncThunk";
 
 // const register = createAsyncThunk("auth/register", (arg: ArgRegisterType, thunkAPI) => {
 //   const { dispatch, getState, rejectWithValue } = thunkAPI;
@@ -27,15 +28,13 @@ const register = createAsyncThunk<void, ArgRegisterType, {
 // });
 
 // async()=>{} - всегда возвращает промиc
-const login = createAsyncThunk < { profile: ProfileType }, ArgLoginType, {
-  state: RootState
-  dispatch: AppDispatch   //Dispatch
-  rejectValue: unknown
-}>
+const login = createAppAsyncThunk < { profile: ProfileType }, ArgLoginType>
   ("auth/login", async (arg, thunkAPI) => {
     const res = await authApi.login(arg);
     return { profile: res.data };  //go to promise
   });
+
+
 
 const slice = createSlice({
   name: "auth",
@@ -57,6 +56,7 @@ const slice = createSlice({
     // });
   }
 });
+
 
 export const authReducer = slice.reducer;
 // export const authActions = slice.actions;
