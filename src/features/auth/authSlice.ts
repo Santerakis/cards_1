@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from "@reduxjs
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType } from "./authApi";
 import { AppDispatch, RootState } from "../../app/store";
 import { createAppAsyncThunk } from "../../common/utils/createAppAsyncThunk";
+import { appActions } from "../../app/appSlice";
 
 // const register = createAsyncThunk("auth/register", (arg: ArgRegisterType, thunkAPI) => {
 //   const { dispatch, getState, rejectWithValue } = thunkAPI;
@@ -10,43 +11,53 @@ import { createAppAsyncThunk } from "../../common/utils/createAppAsyncThunk";
 //   });
 // });
 
-const register = createAsyncThunk<void, ArgRegisterType, {
-  state: RootState
-  dispatch: AppDispatch   //Dispatch
-  rejectValue: unknown
-}>("auth/register", async (arg, thunkAPI) => {
-  const {dispatch, rejectWithValue} = thunkAPI
+// const register = createAsyncThunk<void, ArgRegisterType, {
+//   state: RootState
+//   dispatch: AppDispatch   //Dispatch
+//   rejectValue: unknown
+// }>("auth/register", async (arg, thunkAPI) => {
+//   const {dispatch, rejectWithValue} = thunkAPI
+//   try {
+//     await authApi.register(arg);
+//   } catch (e: any) {
+//     debugger
+//     const err = e.response.data.error
+//     return rejectWithValue(err)
+//   }
+// });
+const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg, thunkAPI) => {
+  const { dispatch, rejectWithValue } = thunkAPI;
   try {
     await authApi.register(arg);
   } catch (e: any) {
     debugger
-    const err = e.response.data.error
-    return rejectWithValue(err)
+    const err = e.response.data.error;
+    dispatch(appActions.setError({error: err}))
+    return rejectWithValue(null);  //чтобы корректно было в дебагере Redux
   }
 });
 
 // const login = createAsyncThunk("auth/login", (arg: ArgLoginType, thunkAPI) => {
 //   const { dispatch } = thunkAPI;
-//   return authApi.login(arg).then((res) => {
+//   return authApi.login(arg).then((res) => {   //return т.к. then, в async()=>{} не недо return
 //     dispatch(authActions.setProfile({ profile: res.data }));
 //     return { profile: res.data };
 //   });
 // });
 
 // async()=>{} - всегда возвращает промиc
-const login = createAppAsyncThunk < { profile: ProfileType }, ArgLoginType>
-  ("auth/login", async (arg, thunkAPI) => {
-    const res = await authApi.login(arg);
-    return { profile: res.data };  //go to promise
-  });
-
+const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
+("auth/login", async (arg, thunkAPI) => {
+  const res = await authApi.login(arg);
+  return { profile: res.data };  //go to promise
+});
 
 
 const slice = createSlice({
   name: "auth",
   initialState: {
-    profile: null as ProfileType | null,
-    authError: ''
+    profile: null as ProfileType | null
+    // authError: ""
   },
   reducers: {
     // setProfile: (state, action: PayloadAction<{ profile: ProfileType }>) => {
@@ -57,10 +68,11 @@ const slice = createSlice({
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.profile = action.payload.profile;
-      })
-    .addCase(register.rejected, (state, action) => {
-      debugger
-    })
+      });
+    // .addCase(register.rejected, (state, action) => {
+    //   debugger
+    //   state.authError = action.payload;
+    // });
     // .addCase(register.rejected, (state, action) => {
     //   debugger
     // });
@@ -68,7 +80,7 @@ const slice = createSlice({
 });
 
 
-export const authReducer = slice.reducer;
+export const authReducer = slice.reducer
 // export const authActions = slice.actions;
 export const authThunks = { register, login };    //все санки упаковываем в объект
 

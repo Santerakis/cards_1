@@ -11,6 +11,10 @@ const slice = createSlice({
     setIsLoading: (state, action: PayloadAction<{isLoading: boolean}>) => {
       let a = current(state) //real state in "a" for debbuger
       state.isLoading = action.payload.isLoading
+    },
+    setError: (state, action: PayloadAction<{error: string | null}>) => {
+      debugger
+      state.error = action.payload.error
     }
   }
 })
