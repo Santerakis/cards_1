@@ -15,8 +15,14 @@ const register = createAsyncThunk<void, ArgRegisterType, {
   dispatch: AppDispatch   //Dispatch
   rejectValue: unknown
 }>("auth/register", async (arg, thunkAPI) => {
-  debugger
-  await authApi.register(arg);
+  const {dispatch, rejectWithValue} = thunkAPI
+  try {
+    await authApi.register(arg);
+  } catch (e: any) {
+    debugger
+    const err = e.response.data.error
+    return rejectWithValue(err)
+  }
 });
 
 // const login = createAsyncThunk("auth/login", (arg: ArgLoginType, thunkAPI) => {
@@ -39,7 +45,8 @@ const login = createAppAsyncThunk < { profile: ProfileType }, ArgLoginType>
 const slice = createSlice({
   name: "auth",
   initialState: {
-    profile: null as ProfileType | null
+    profile: null as ProfileType | null,
+    authError: ''
   },
   reducers: {
     // setProfile: (state, action: PayloadAction<{ profile: ProfileType }>) => {
@@ -50,7 +57,10 @@ const slice = createSlice({
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.profile = action.payload.profile;
-      });
+      })
+    .addCase(register.rejected, (state, action) => {
+      debugger
+    })
     // .addCase(register.rejected, (state, action) => {
     //   debugger
     // });
