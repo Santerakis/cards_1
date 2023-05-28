@@ -7,7 +7,7 @@ const Login = () => {
 
   const loginHandler = () => {
     const payload = {
-      email: "ccf@bk.ru",
+      email: "ccf@bk.ruu",
       password: "12345678",
       rememberMe: false
     };

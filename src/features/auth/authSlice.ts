@@ -30,10 +30,16 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
   try {
     await authApi.register(arg);
   } catch (e: any) {
-    debugger
-    const err = e.response.data.error;
-    dispatch(appActions.setError({error: err}))
-    return rejectWithValue(null);  //чтобы корректно было в дебагере Redux
+    // if (e.response) {
+    //   const err = e.response.data.error;
+    //   dispatch(appActions.setError({ error: err }));
+    // } else {
+    //   dispatch(appActions.setError({ error: e.message }));
+    // }
+    const error = e.response ? e.response.data.error : e.message;
+    dispatch(appActions.setError({ error }));
+
+    return rejectWithValue(null);  //чтобы корректно было в дебагере Redux без него ../fullfield
   }
 });
 
@@ -41,17 +47,24 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
 //   const { dispatch } = thunkAPI;
 //   return authApi.login(arg).then((res) => {   //return т.к. then, в async()=>{} не недо return
 //     dispatch(authActions.setProfile({ profile: res.data }));
-//     return { profile: res.data };
 //   });
 // });
 
 // async()=>{} - всегда возвращает промиc
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
 ("auth/login", async (arg, thunkAPI) => {
-  const res = await authApi.login(arg);
-  return { profile: res.data };  //go to promise
+  const { dispatch, rejectWithValue } = thunkAPI;
+  try {
+    const res = await authApi.login(arg);
+    return { profile: res.data };  //go to promise
+  } catch (e: any) {
+    const error = e.response ? e.response.data.error : e.message;
+    dispatch(appActions.setError({ error }));
+    return rejectWithValue(null);  //тут обязательно
+  }
+  // const res = await authApi.login(arg);
+  // return { profile: res.data };  //go to promise
 });
-
 
 const slice = createSlice({
   name: "auth",
@@ -80,7 +93,7 @@ const slice = createSlice({
 });
 
 
-export const authReducer = slice.reducer
-// export const authActions = slice.actions;
+export const authReducer = slice.reducer;
+export const authActions = slice.actions;
 export const authThunks = { register, login };    //все санки упаковываем в объект
 
