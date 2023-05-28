@@ -9,6 +9,7 @@ export const GlobalError = () => {
 
   if (error !== null) {
     toast.error(error);
+    // toast.error('privet');
   }
 
   // Данный код необходим для того, чтобы занулять ошибку в стейте
@@ -21,6 +22,7 @@ export const GlobalError = () => {
     }
   }, [error]);
 
+  console.log('Toast');
   return (
     <ToastContainer
       position="top-right"

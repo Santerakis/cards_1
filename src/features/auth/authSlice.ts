@@ -31,23 +31,23 @@ import { thunkTryCatch } from "../../common/utils/thunk-try-catch";
 //   try {
 //     await authApi.register(arg);
 //   } catch (e: any) {
+
 //     // if (e.response) {
 //     //   const err = e.response.data.error;
 //     //   dispatch(appActions.setError({ error: err }));
 //     // } else {
 //     //   dispatch(appActions.setError({ error: e.message }));
 //     // }
+
 //     const error = e.response ? e.response.data.error : e.message;
 //     dispatch(appActions.setError({ error }));
-//
 //     return rejectWithValue(null);  //чтобы корректно было в дебагере Redux без него ../fullfield
 //   }
 // });
 
 const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg: ArgRegisterType, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    const res = await authApi.register(arg);
-    console.log("register", res);
+    await authApi.register(arg);
   });
 });
 

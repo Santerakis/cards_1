@@ -14,7 +14,7 @@ function App() {
     //   dispatch(appActions.setIsLoading({ isLoading: false }));
     // }, 3000);
   }, []);
-
+  console.log('App');
   return (
     <div className="App">
       {isLoading && <h1>Loader...</h1>}
