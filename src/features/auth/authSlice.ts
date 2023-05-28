@@ -3,6 +3,7 @@ import { ArgLoginType, ArgRegisterType, authApi, ProfileType } from "./authApi";
 import { AppDispatch, RootState } from "../../app/store";
 import { createAppAsyncThunk } from "../../common/utils/createAppAsyncThunk";
 import { appActions } from "../../app/appSlice";
+import { thunkTryCatch } from "../../common/utils/thunk-try-catch";
 
 // const register = createAsyncThunk("auth/register", (arg: ArgRegisterType, thunkAPI) => {
 //   const { dispatch, getState, rejectWithValue } = thunkAPI;
@@ -25,22 +26,29 @@ import { appActions } from "../../app/appSlice";
 //     return rejectWithValue(err)
 //   }
 // });
-const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg, thunkAPI) => {
-  const { dispatch, rejectWithValue } = thunkAPI;
-  try {
-    await authApi.register(arg);
-  } catch (e: any) {
-    // if (e.response) {
-    //   const err = e.response.data.error;
-    //   dispatch(appActions.setError({ error: err }));
-    // } else {
-    //   dispatch(appActions.setError({ error: e.message }));
-    // }
-    const error = e.response ? e.response.data.error : e.message;
-    dispatch(appActions.setError({ error }));
+// const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg, thunkAPI) => {
+//   const { dispatch, rejectWithValue } = thunkAPI;
+//   try {
+//     await authApi.register(arg);
+//   } catch (e: any) {
+//     // if (e.response) {
+//     //   const err = e.response.data.error;
+//     //   dispatch(appActions.setError({ error: err }));
+//     // } else {
+//     //   dispatch(appActions.setError({ error: e.message }));
+//     // }
+//     const error = e.response ? e.response.data.error : e.message;
+//     dispatch(appActions.setError({ error }));
+//
+//     return rejectWithValue(null);  //чтобы корректно было в дебагере Redux без него ../fullfield
+//   }
+// });
 
-    return rejectWithValue(null);  //чтобы корректно было в дебагере Redux без него ../fullfield
-  }
+const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg: ArgRegisterType, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    const res = await authApi.register(arg);
+    console.log("register", res);
+  });
 });
 
 // const login = createAsyncThunk("auth/login", (arg: ArgLoginType, thunkAPI) => {
