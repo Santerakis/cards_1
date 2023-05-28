@@ -1,5 +1,5 @@
 import { Counter } from "../features/counter/Counter";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector } from "../common/hooks";
 import { useEffect } from "react";
 import { appActions } from "./appSlice";
 import { authApi } from "../features/auth/authApi";

@@ -9,6 +9,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { dividerClasses } from "@mui/material";
 import { Register } from "./features/auth/Register/Register";
 import Login from "./features/auth/Login/Login";
+import { GlobalError } from "./common/components/GlobalError/GlobalError";
+
+import 'react-toastify/dist/ReactToastify.css'; ///////// GlobalError
 
 const router = createBrowserRouter([
   {
@@ -17,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login/>
+    element: <Login />
   },
   {
     path: "/register",
@@ -34,8 +37,9 @@ const root = createRoot(container);
 
 root.render(
   <Provider store={store}>
+    <GlobalError />
     <RouterProvider router={router} />
-    <App/>
+    <App />
   </Provider>
 );
 

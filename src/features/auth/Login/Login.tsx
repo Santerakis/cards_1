@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppDispatch } from "../../../app/hooks";
+import { useAppDispatch } from "../../../common/hooks";
 import { authThunks } from "../authSlice";
 
 const Login = () => {

@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../../../app/hooks";
+import { useAppDispatch } from "../../../common/hooks";
 import { authThunks } from "../authSlice";
 import s from "./Register.module.css"
 
