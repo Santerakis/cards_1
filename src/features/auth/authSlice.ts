@@ -58,20 +58,29 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
 //   });
 // });
 
-// async()=>{} - всегда возвращает промиc
-const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
-("auth/login", async (arg, thunkAPI) => {
-  const { dispatch, rejectWithValue } = thunkAPI;
-  try {
+
+// // async()=>{} - всегда возвращает промиc
+// const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
+// ("auth/login", async (arg, thunkAPI) => {
+//   const { dispatch, rejectWithValue } = thunkAPI;
+//   try {
+//     const res = await authApi.login(arg);
+//     return { profile: res.data };  //go to promise
+//   } catch (e: any) {
+//     const error = e.response ? e.response.data.error : e.message;
+//     dispatch(appActions.setError({ error }));
+//     return rejectWithValue(null);  //тут обязательно
+//   }
+//   // const res = await authApi.login(arg);
+//   // return { profile: res.data };  //go to promise
+// });
+
+
+const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/register", async (arg: ArgLoginType, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.login(arg);
-    return { profile: res.data };  //go to promise
-  } catch (e: any) {
-    const error = e.response ? e.response.data.error : e.message;
-    dispatch(appActions.setError({ error }));
-    return rejectWithValue(null);  //тут обязательно
-  }
-  // const res = await authApi.login(arg);
-  // return { profile: res.data };  //go to promise
+    return { profile: res.data };
+  });
 });
 
 const slice = createSlice({
