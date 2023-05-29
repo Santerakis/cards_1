@@ -3,4 +3,6 @@ export {useAppDispatch} from "./useAppDispatch"
 
 // чтобы вместо этого:  import { useAppSelector } from "../common/hooks/useAppSelector";
 // стало:               import { useAppSelector } from "../common/hooks";
-// ам где мы импортим эти хуки
+// там где мы импортим эти хуки
+
+// условно последующая (от папки нахождения) вложеность уходит в index

@@ -1,4 +1,5 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import login from "../features/auth/Login/Login";
 
 const slice = createSlice({
   name: 'app',
@@ -15,6 +16,16 @@ const slice = createSlice({
     setError: (state, action: PayloadAction<{error: string | null}>) => {
       state.error = action.payload.error
     }
+  },
+  extraReducers: builder => {
+    // матчер(предикат) и подредусер
+    builder.addMatcher((action)=>{
+      return true // тогда срабатывает подредусер
+    }, (state, action)=>{
+      // на каждый экшен и скрытый экшен вызывают это колбек(в адматчер)
+      // можно ложить в любой слайб, без разницы
+      console.log('✅ addMatcher: ', action.type)
+    })
   }
 })
 

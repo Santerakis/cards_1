@@ -1,9 +1,6 @@
-import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType } from "./authApi";
-import { AppDispatch, RootState } from "../../app/store";
-import { createAppAsyncThunk } from "../../common/utils/createAppAsyncThunk";
-import { appActions } from "../../app/appSlice";
-import { thunkTryCatch } from "../../common/utils/thunk-try-catch";
+import { createAppAsyncThunk, thunkTryCatch } from "../../common/utils";
 
 // const register = createAsyncThunk("auth/register", (arg: ArgRegisterType, thunkAPI) => {
 //   const { dispatch, getState, rejectWithValue } = thunkAPI;
