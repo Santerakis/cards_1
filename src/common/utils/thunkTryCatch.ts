@@ -17,7 +17,7 @@ import { AxiosError, isAxiosError } from "axios";
 export const thunkTryCatch = async (thunkAPI: BaseThunkAPI<RootState, any, AppDispatch, unknown>, logic: Function) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
-    dispatch(appActions.setIsLoading({ isLoading: true }));
+    // dispatch(appActions.setIsLoading({ isLoading: true }));
     return await logic();
   } catch (e) {    // изначально е unknown
     const err = e as Error | AxiosError<{ error: string }>;  //конкретизируем

@@ -20,11 +20,14 @@ const slice = createSlice({
   extraReducers: builder => {
     // матчер(предикат) и подредусер
     builder.addMatcher((action)=>{
-      return true // тогда срабатывает подредусер
+      console.log('addMatcher predicator: ', action.type)
+      return action.type.endsWith('/pending')
+      // return true // тогда срабатывает подредусер
     }, (state, action)=>{
-      // на каждый экшен и скрытый экшен вызывают это колбек(в адматчер)
+      // на каждый экшен и скрытый экшен вызывают это колбек(в адматчер), если предикат возвр. true
       // можно ложить в любой слайб, без разницы
       console.log('✅ addMatcher: ', action.type)
+      state.isLoading = true
     })
   }
 })
