@@ -1,10 +1,11 @@
 import { Counter } from "../features/counter/Counter";
-import { useAppDispatch, useAppSelector } from "../common/hooks";
 import { useEffect } from "react";
 import { appActions } from "./appSlice";
 import { authApi } from "../features/auth/authApi";
 import { LinearProgress } from "@mui/material";
 import s from "./App.module.css"
+import { useAppDispatch } from "../common/hooks/useAppDispatch";
+import { useAppSelector } from "../common/hooks";
 
 function App() {
   const isLoading = useAppSelector((state) => state.app.isLoading);
