@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppDispatch } from "../../../common/hooks";
 import { authThunks } from "../authSlice";
+import s from "./Login.module.css";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ const Login = () => {
   };
 // TODO
   return (
-    <div>
+    <div className={s.container}>
       <h1>Login</h1>
       <button onClick={loginHandler}>login</button>
     </div>
