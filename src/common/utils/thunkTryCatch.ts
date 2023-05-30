@@ -28,7 +28,8 @@ export const thunkTryCatch = async (thunkAPI: BaseThunkAPI<RootState, any, AppDi
       dispatch(appActions.setError({ error: `Native error ${err.message}` }));  // если нативная ошибка
     }
     return rejectWithValue(null);
-  } finally {
-    dispatch(appActions.setIsLoading({ isLoading: false }));
   }
+  // finally {
+  //   dispatch(appActions.setIsLoading({ isLoading: false }));
+  // }
 };

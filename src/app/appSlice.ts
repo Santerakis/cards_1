@@ -18,9 +18,11 @@ const slice = createSlice({
     }
   },
   extraReducers: builder => {
+    // там где логика повторяется неплохо использовать addMatcher
     // матчер(предикат) и подредусер
     builder.addMatcher((action)=>{
       console.log('addMatcher predicator: ', action.type)
+      if(action.type === 'auth/register/pending') return false
       return action.type.endsWith('/pending')
       // return true // тогда срабатывает подредусер
     }, (state, action)=>{
@@ -29,8 +31,18 @@ const slice = createSlice({
       console.log('✅ addMatcher: ', action.type)
       state.isLoading = true
     })
+      .addMatcher((action)=>{
+        return action.type.endsWith('/fulfilled')
+      }, (state, action)=>{
+        state.isLoading = false
+      })
+      .addMatcher((action)=>{
+        return action.type.endsWith('/rejected')
+      }, (state, action)=>{ 
+        state.isLoading = false
+      })
   }
-})
+}) // в итоге выирыш(ререндер?) экшен setIsLoading диспачется под капотом(в Redux tools не выводится)
 
 export const appReducer = slice.reducer
 export const appActions = slice.actions
