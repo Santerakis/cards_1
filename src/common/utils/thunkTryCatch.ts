@@ -14,8 +14,8 @@ import { AxiosError, isAxiosError } from "axios";
 //   }
 // };
 
-export const thunkTryCatch = async (thunkAPI: BaseThunkAPI<RootState, any, AppDispatch, unknown>, logic: Function) => {
-  const {dispatch, rejectWithValue } = thunkAPI;
+export const thunkTryCatch = async (thunkAPI: BaseThunkAPI<RootState, any, AppDispatch, unknown>, logic: Function, showGlobalError: boolean = true) => {
+  const { dispatch, rejectWithValue } = thunkAPI;
   try {
     // dispatch(appActions.setIsLoading({ isLoading: true }));
     return await logic();
@@ -28,10 +28,9 @@ export const thunkTryCatch = async (thunkAPI: BaseThunkAPI<RootState, any, AppDi
     // } else {
     //   dispatch(appActions.setError({ error: `Native error ${err.message}` }));  // если нативная ошибка
     // }
+    return rejectWithValue({ e, showGlobalError }); //передастся с в пейлод экшена в addMatcher appSlice rejected
 
-    return rejectWithValue(e); //null был
-  }
-  finally {
+  } finally {
     // dispatch(appActions.setIsLoading({ isLoading: false }));
     dispatch(appActions.setError({ error: null }));
   }

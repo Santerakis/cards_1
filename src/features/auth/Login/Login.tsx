@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../../common/hooks";
 import { authThunks } from "../authSlice";
 import s from "./Login.module.css";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -25,7 +25,10 @@ const Login = () => {
       }, 1000)  //как искуственный вариант, но в реале нужно использ. IsLoggedIn
 
     })
-      .catch((err) => {})
+      .catch((err) => {
+        // toast.error(err.response.data.error)
+        toast.error(err.e.response.data.error) // для обертки с отк глоб ошибки
+      })
   };
 // TODO
   return (

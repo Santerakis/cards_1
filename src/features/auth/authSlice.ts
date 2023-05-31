@@ -77,7 +77,7 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/
   return thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.login(arg);
     return { profile: res.data };
-  });
+  }, false);
 });
 
 const slice = createSlice({
