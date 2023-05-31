@@ -20,11 +20,17 @@ function App() {
 
   console.log('App');
   return (
-    <div>
-      {isLoading && <LinearProgress />}
-      {/*<Counter />*/}
-    </div>
-  );
+    <>
+      {
+        isLoading &&
+          <div className={s.absolute}>
+            <LinearProgress />
+            {/*<Counter />*/}
+          </div>
+
+      }
+    </>
+  )
 }
 
 export default App;
