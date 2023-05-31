@@ -14,13 +14,14 @@ export const GlobalError = () => {
 
   // Данный код необходим для того, чтобы занулять ошибку в стейте
   // после того как ошибка установилась.
-  useEffect(() => {
-    if (error !== null) {
-      setTimeout(() => {
-        dispatch(appActions.setError({ error: null }));
-      }, 1000);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error !== null) {
+  //     setTimeout(() => {
+  //       dispatch(appActions.setError({ error: null }));
+  //     }, 1000);
+  //   }
+  // }, [error]);
+  ////////////////////////////////// в finally thunkTryCatch посоветовал студент
 
   console.log('Toast');
   return (

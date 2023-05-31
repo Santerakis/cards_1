@@ -1,9 +1,15 @@
 import { useAppDispatch } from "../../../common/hooks";
 import { authThunks } from "../authSlice";
 import s from "./Register.module.css"
+import { useEffect } from "react";
+import { unhandleAction } from "../../../common/actions/unhandleAction";
 
 export const Register = () => {
   const dispatch = useAppDispatch();
+
+  useEffect(()=>{
+    dispatch(unhandleAction())
+  }, [])
 
   const registerHandler = () => {
     const payload = {

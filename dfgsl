@@ -1,0 +1,131 @@
+[33mcommit b016ba26a53bcaae71f1450b2ef047e8dcf36514[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Tue May 30 21:08:10 2023 +0300
+
+    iskljuchenie acctiona
+
+[33mcommit e2fafbeb0f81d57f7f5f9e4d1180914f8c18f61a[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 29 19:19:53 2023 +0300
+
+    addMatcher and working preditor
+
+[33mcommit a61fef40d2820974bced3456361932c5254e832a[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 29 19:04:32 2023 +0300
+
+    start_test_addMAtcher
+
+[33mcommit 09363427d299491ee520f1eb8cdbd8bda6f554a1[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 29 14:26:40 2023 +0300
+
+    refactor_importov
+
+[33mcommit a198c1e020ff9aa75090b8760dec12da8744fe30[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 29 13:30:58 2023 +0300
+
+    LinearProgress_in_thunkTryCatch
+
+[33mcommit 97988518426c80b222974ab5a01318db82812ae3[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 29 12:17:13 2023 +0300
+
+    thunkTryCatch_login
+
+[33mcommit 469219fa08ff2a7cb653068dce8dbb6df09ba2c5[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Sun May 28 21:48:02 2023 +0300
+
+    thunkTryCatch_typing
+
+[33mcommit 6fb50dc23b44d3daa31d8bae82e75eb7a930b457[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Sun May 28 17:39:08 2023 +0300
+
+    thunkTryCatch
+
+[33mcommit ab8c844ee02006431aaa285d2b8bc29b2f92abc5[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Sun May 28 16:44:53 2023 +0300
+
+    GlobalError
+
+[33mcommit 40ac2cf4c0e5b8f89da6f4f4bdfdf27e02b49f40[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Sun May 28 14:24:06 2023 +0300
+
+    login_ error
+
+[33mcommit 54357db0e8ffffc5a053bc96c3abebbeb66f33cf[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Fri May 26 16:07:49 2023 +0300
+
+    rejectWithValue(null)_error_in_app_state
+
+[33mcommit 42a6a2ad65065d97ff759bb1faf08167b1de7a25[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Fri May 26 14:16:10 2023 +0300
+
+    addCase_rejected
+
+[33mcommit 4f1b2d73f603459f790c2af52c7607531fa77ba5[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Thu May 25 20:27:40 2023 +0300
+
+    react-hook-form
+
+[33mcommit 5a69fb2f05334212d63eb06a5d9de54de1bbdaa2[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Wed May 24 22:46:21 2023 +0300
+
+    createAppAsyncThunk_typing
+
+[33mcommit 6f81677178131ac3d2beeac825acc6210ba21787[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Wed May 24 22:23:56 2023 +0300
+
+    createAsyncThunk_typing
+
+[33mcommit 30df0c6546093d1a0166c31a4a2d2135c4a3ff43[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Wed May 24 21:40:30 2023 +0300
+
+    addCase-rejected
+
+[33mcommit 6b9d0d561922f6e393111cc09f46ff32243c426c[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Wed May 24 20:24:32 2023 +0300
+
+    addCase_then
+
+[33mcommit 3de181ad331523714e6a5d332adaa3cd7dbc6aba[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Wed May 24 18:35:53 2023 +0300
+
+    login
+
+[33mcommit f19da8df1f22240a325d9a5660aa5ac927b8b46e[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Tue May 23 21:10:13 2023 +0300
+
+    authApi.register
+
+[33mcommit 3cea958e51b8713d5b6a537616ef8a333e7daec2[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 22 20:05:15 2023 +0300
+
+    routers
+
+[33mcommit b9153be8a1eb562834cd08ff945d6d1848742249[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 22 19:56:03 2023 +0300
+
+    first commit
+
+[33mcommit c366f5a15f03b6722cc33ab76cb6183614af7467[m
+Author: Sergey <santerakis@gmail.com>
+Date:   Mon May 22 16:55:40 2023 +0300
+
+    Initialize project using Create React App

@@ -15,21 +15,24 @@ import { AxiosError, isAxiosError } from "axios";
 // };
 
 export const thunkTryCatch = async (thunkAPI: BaseThunkAPI<RootState, any, AppDispatch, unknown>, logic: Function) => {
-  const { dispatch, rejectWithValue } = thunkAPI;
+  const {dispatch, rejectWithValue } = thunkAPI;
   try {
     // dispatch(appActions.setIsLoading({ isLoading: true }));
     return await logic();
   } catch (e) {    // изначально е unknown
-    const err = e as Error | AxiosError<{ error: string }>;  //конкретизируем
-    if (isAxiosError(err)) {  // если аксиос ошибка, а не натипная(пример: обращение к свойству у несущ. свойства)
-      const error = err.response ? err.response.data.error : err.message;
-      dispatch(appActions.setError({ error }));
-    } else {
-      dispatch(appActions.setError({ error: `Native error ${err.message}` }));  // если нативная ошибка
-    }
-    return rejectWithValue(null);
+
+    // const err = e as Error | AxiosError<{ error: string }>;  //конкретизируем
+    // if (isAxiosError(err)) {  // если аксиос ошибка, а не натипная(пример: обращение к свойству у несущ. свойства)
+    //   const error = err.response ? err.response.data.error : err.message;
+    //   dispatch(appActions.setError({ error }));
+    // } else {
+    //   dispatch(appActions.setError({ error: `Native error ${err.message}` }));  // если нативная ошибка
+    // }
+
+    return rejectWithValue(e); //null был
   }
-  // finally {
-  //   dispatch(appActions.setIsLoading({ isLoading: false }));
-  // }
+  finally {
+    // dispatch(appActions.setIsLoading({ isLoading: false }));
+    dispatch(appActions.setError({ error: null }));
+  }
 };
