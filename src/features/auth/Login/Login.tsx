@@ -11,17 +11,21 @@ const Login = () => {
 
   const loginHandler = () => {
     const payload = {
-      email: "ccf@bk.ru",
+      email: "ccf@bk.ruu",
       password: "12345678",
       rememberMe: false
     };
-    dispatch(authThunks.login(payload)).then((res) => {
+    dispatch(authThunks.login(payload))
+      .unwrap() // для поподания в catch, т.к. createAsyncThunk will always return a resolved promise
+      .then((res) => {
+      debugger
       toast.success('Вы успешно залогинились!')
       setTimeout(() => {
         navigate('/packs')
-      }, 2000)  //как искуственный вариант, но в реале нужно использ. IsLoggedIn
+      }, 1000)  //как искуственный вариант, но в реале нужно использ. IsLoggedIn
 
     })
+      .catch((err) => {})
   };
 // TODO
   return (
